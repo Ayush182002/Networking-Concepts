@@ -1,0 +1,53 @@
+Objective:
+
+
+This assignment aims to find the Round Trip Time (RTT) in a Client to Server communication
+using a datagram (UDP) socket. The Server and Client should situate on two different physical
+computers in Ethernet LAN. The aim is also to understand how the Round Trip Time changes in
+various loading conditions in the network.
+Technique
+The process starts with the Client generating and sending a packet to the Server. The packet
+(datagram) format to be used is as follows.
+|----------|----------|----------|----------|
+| Sequence | TTL      | Payload  | Payload  |
+| Number   | Length   | bytes    |          |
+| (4 bytes)| (1 byte) | (2 bytes)| (P bytes)|
+|----------|- --------|----------|----------|
+ Sequence Number:Uniquely identifies individual packet.
+
+ Time-to-live field (TTL): A non-negative even integer with an initial value of T.
+
+ Payload Length: The length of the payload bytes P.
+
+ Payload Bytes: Arbitrary payload bytes of size P bytes.
+
+
+When the Server receives a datagram from the Client, it checks the Payload Length field and
+compares the number of received bytes to determine the sanity of the packet. The packet is
+dropped at the Server if it is found to be inconsistent and responds with an error message as
+“MALFORMED PACKET” in the payload (keeping SN and TTL unchanged). Otherwise it
+decrements the TTL value by one in the datagram and sends the same datagram (with the new
+TTL) back to the Client. Note that the Server should minimize the processing delay by not
+incorporating any printing or queuing of the received packet.
+On reception of the packets at the Client back from the Server, calculate the Round Trip Time
+(RTT) delay for each packet and calculate the average RTT delay across the packets. In case
+the packet is reported as “MALFORMED PACKET”, it prints in the console.
+
+
+
+Development and Running Environment:
+Write two socket programs in ClientPacketGen.c/cpp and ServerPacketFwd.c/cpp,
+which communicate using Datagram Sockets (UDP).
+
+
+The server application should be executed using the following command:
+$>./serverPacketfwd <ServerPort>
+
+
+The client application should be executed using the following command:
+$>./clientPacketGen <ServerIP> <ServerPort> <P> <TTL> <NumPackets>
+
+
+Here NumPackets could be anything between 1 to 50, and for each packet, a different
+sequence number should be generated starting from 0. The P value should be within 100 to
+1000 bytes, and T between 2 and 20 (and must be even).

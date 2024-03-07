@@ -1,0 +1,8 @@
+Extend the program to support chatting. The client app sends the first
+message it wishes to. Upon receiving that message, the server app prints the received
+message. Then, it sends the response message to the client. This message exchange continues
+until one party (server or client) says "Bye" and closes the chat session. After receiving the
+"Bye" message, another party closes the chat session.
+Note that in this way of chatting, one end cannot send more than one message at a time. On
+sending one message, it has to wait for the response from another party, and then only it can
+send the next message.

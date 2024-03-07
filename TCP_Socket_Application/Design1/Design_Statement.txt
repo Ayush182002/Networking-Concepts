@@ -1,0 +1,4 @@
+Develop a simple TCP Client-Server application where the client app sends a predefined text
+message "Hello World!!" to the server app in a user-defined port of your choice. Upon
+receiving that message, the server app forwards the same message to the client app. Both
+server and client applications print the message.

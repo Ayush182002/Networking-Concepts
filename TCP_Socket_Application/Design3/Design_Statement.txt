@@ -1,0 +1,7 @@
+This problem aims to get rid of the imitation stated in Problem-1. The chatting mechanism
+should be flexible, so sending and receiving messages should be concurrent. In other words,
+sending and receiving messages should not block each other. Users may send no or multiple
+messages before receiving a response from another party.
+It can be achieved using the Process or Thread concept, where "reading a text from a user and
+sending" job can be given to a Process or a Thread. Again, the "receiving a text message and
+printing it in the console" job can be given to another Process or a Thread.
